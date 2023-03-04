@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_excellent_timer/src/tool/duration_handler.dart';
+
 /// count down timer status
 ///
 enum CountDownTimerStatus {
@@ -23,3 +26,21 @@ enum CountDownTimerStatus {
 /// timer operation
 ///
 enum TimerOperation { start, stop, pause, resume, reset }
+
+/// timer style
+enum TimerStyle {
+  hourMinuteSecond, // H-M-S
+  hourMinute, // H-M
+  minuteSecond, // M-S
+  hourOnly, // H
+  minuteOnly, // M
+  secondOnly; // S
+
+  // build timer
+  Widget build(Duration duration, {TextStyle? style}) {
+    return Text(
+      duration.format(this),
+      style: style ?? const TextStyle(fontSize: 40),
+    );
+  }
+}

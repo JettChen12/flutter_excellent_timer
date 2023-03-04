@@ -1,4 +1,5 @@
 import 'package:example/pages/all_operation_demo.dart';
+import 'package:example/pages/count_down_timer_demo.dart';
 import 'package:example/pages/normal_operation_demo.dart';
 import 'package:flutter/material.dart';
 
@@ -24,20 +25,21 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
+  // demo item
   Widget demoItem(BuildContext context, String title, Widget demoPage) {
     return GestureDetector(
       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => demoPage)),
       child: Container(
         margin: const EdgeInsets.all(20),
-        height: 60,
+        height: 50,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(width: 1),
         ),
         alignment: Alignment.center,
         child: Text(
           title,
-          style: const TextStyle(fontSize: 25),
+          style: const TextStyle(fontSize: 20),
         ),
       ),
     );
@@ -53,6 +55,7 @@ class MyHomePage extends StatelessWidget {
         children: [
           demoItem(context, 'All Operation Demo', const AllOperationDemo()),
           demoItem(context, 'Normal Operation Demo', const NormalOperationDemo()),
+          demoItem(context, 'CountDown Timer Demo', const CountDownTimerDemo()),
         ],
       ),
     );

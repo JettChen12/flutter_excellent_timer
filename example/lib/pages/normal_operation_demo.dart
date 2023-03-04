@@ -10,7 +10,7 @@ class NormalOperationDemo extends StatefulWidget {
 }
 
 class _NormalOperationDemoState extends State<NormalOperationDemo> {
-  final ExcellentCountDownTimer controller = ExcellentCountDownTimer();
+  final ExcellentCountDownTimerController controller = ExcellentCountDownTimerController();
 
   @override
   void dispose() {

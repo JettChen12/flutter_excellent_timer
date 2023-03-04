@@ -7,8 +7,8 @@ import 'package:flutter_excellent_timer/src/tool/enum.dart';
 
 /// 倒计时控制器
 ///
-class ExcellentCountDownTimer implements ExcellentTimerInterface {
-  ExcellentCountDownTimer({this.stepDuration = const Duration(seconds: 1)});
+class ExcellentCountDownTimerController implements ExcellentTimerInterface {
+  ExcellentCountDownTimerController({this.stepDuration = const Duration(seconds: 1)});
 
   /// 定义间隔时间 默认一秒钟
   Duration stepDuration;

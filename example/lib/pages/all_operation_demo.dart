@@ -9,7 +9,7 @@ class AllOperationDemo extends StatefulWidget {
 }
 
 class _AllOperationDemoState extends State<AllOperationDemo> {
-  final ExcellentCountDownTimer controller = ExcellentCountDownTimer();
+  final ExcellentCountDownTimerController controller = ExcellentCountDownTimerController();
 
   void _start() {
     controller.start(
