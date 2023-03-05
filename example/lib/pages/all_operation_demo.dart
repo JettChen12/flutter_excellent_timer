@@ -9,14 +9,12 @@ class AllOperationDemo extends StatefulWidget {
 }
 
 class _AllOperationDemoState extends State<AllOperationDemo> {
-  final ExcellentCountDownTimerController controller = ExcellentCountDownTimerController();
+  final ExcellentCountDownTimerController controller = ExcellentCountDownTimerController(initDuration: const Duration(minutes: 10));
 
   void _start() {
-    controller.start(
-        duration: const Duration(seconds: 10),
-        whenCompleted: () {
-          print('--------------------isCompleted');
-        });
+    controller.start(whenCompleted: () {
+      print('--------------------isCompleted');
+    });
   }
 
   @override

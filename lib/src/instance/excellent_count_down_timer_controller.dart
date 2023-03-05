@@ -4,14 +4,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_excellent_timer/src/interface/excellent_timer_interface.dart';
 import 'package:flutter_excellent_timer/src/tool/enum.dart';
 
-
 /// 倒计时控制器
 ///
 class ExcellentCountDownTimerController implements ExcellentTimerInterface {
-  ExcellentCountDownTimerController({this.stepDuration = const Duration(seconds: 1)});
+  ExcellentCountDownTimerController({this.initDuration = zeroDuration, this.stepDuration = const Duration(milliseconds: 10)}) {
+    assert(initDuration.inMilliseconds >= 0, 'The duration value must be a positive number.');
+    _tick.value = initDuration;
+  }
 
   /// 定义间隔时间 默认一秒钟
   Duration stepDuration;
+
+  /// 初始设置时长
+  Duration initDuration;
 
   /// 定义计时器
   Timer? _timer;
@@ -61,16 +66,21 @@ class ExcellentCountDownTimerController implements ExcellentTimerInterface {
     _tick.value = zeroDuration;
   }
 
+  /// 重置
+  void _reset() {
+    _timer?.cancel();
+    _timer = null;
+    _tick.value = initDuration;
+  }
+
   @override
-  void start({required Duration duration, void Function()? whenCompleted}) {
+  void start({void Function()? whenCompleted}) {
     // 判定当前状态
     if (isRunning || isPaused) {
       return;
     }
-
-    // 开始时获取总时长
     if (_tick.value == zeroDuration) {
-      _tick.value = duration;
+      return;
     }
 
     // 开启操作监听
@@ -91,8 +101,7 @@ class ExcellentCountDownTimerController implements ExcellentTimerInterface {
       } else if (event == TimerOperation.pause) {
         _pause();
       } else if (event == TimerOperation.reset) {
-        _pause();
-        _tick.value = duration;
+        _reset();
       }
     });
 
@@ -145,7 +154,14 @@ class ExcellentCountDownTimerController implements ExcellentTimerInterface {
 
   @override
   void add(Duration duration) {
+    assert(duration.inMilliseconds >= 0, 'The duration value must be a positive number.');
     _tick.value += duration;
+  }
+
+  @override
+  void setDuration(Duration duration) {
+    assert(duration.inMilliseconds >= 0, 'The duration value must be a positive number.');
+    _tick.value = duration;
   }
 
   @override

@@ -12,10 +12,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-dependency_overrides:
   flutter_excellent_timer:
-    path: E:\Code\flutter_projects\flutter_excellent_timer
-
+    path: ../
   flutter_lints: ^2.0.0
 flutter:
 

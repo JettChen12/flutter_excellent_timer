@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_excellent_timer/flutter_excellent_timer.dart';
+import 'package:flutter_excellent_timer/src/tool/timer_style.dart';
 
 /// count down timer
 ///

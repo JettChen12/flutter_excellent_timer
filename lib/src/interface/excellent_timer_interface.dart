@@ -5,9 +5,8 @@ import 'package:flutter_excellent_timer/src/tool/enum.dart';
 ///
 abstract class ExcellentTimerInterface {
   /// 开始
-  /// [duration] 时长
   /// [whenCompleted] 结束倒计时的回调
-  void start({required Duration duration, void Function()? whenCompleted});
+  void start({void Function()? whenCompleted});
 
   /// 暂停
   void pause();
@@ -23,6 +22,9 @@ abstract class ExcellentTimerInterface {
 
   /// 增加时间
   void add(Duration duration);
+
+  /// 设置时长
+  void setDuration(Duration duration);
 
   /// 销毁控制器
   void dispose();

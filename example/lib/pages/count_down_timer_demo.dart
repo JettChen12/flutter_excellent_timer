@@ -10,7 +10,7 @@ class CountDownTimerDemo extends StatefulWidget {
 }
 
 class _CountDownTimerDemoState extends State<CountDownTimerDemo> {
-  final ExcellentCountDownTimerController _controller = ExcellentCountDownTimerController();
+  final ExcellentCountDownTimerController _controller = ExcellentCountDownTimerController(initDuration: const Duration(hours: 2));
 
   @override
   void dispose() {
@@ -27,30 +27,49 @@ class _CountDownTimerDemoState extends State<CountDownTimerDemo> {
       body: Center(
         child: ValueListenableBuilder(
             valueListenable: _controller.status,
-            builder: (context, value, child) => Stack(
-                  children: [
-                    Align(alignment: Alignment.center, child: ExcellentCountDownTimer(controller: _controller)),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: Visibility(
-                          visible: _controller.isRunning || _controller.isPaused,
-                          replacement: FloatingActionButton(
-                            onPressed: () => _controller.start(
-                                duration: const Duration(seconds: 10),
-                                whenCompleted: () {
-                                  print('--------------------isCompleted');
-                                }),
-                            backgroundColor: CupertinoColors.white,
-                            tooltip: 'start',
-                            heroTag: 'start',
-                            child: const Icon(
-                              Icons.play_arrow,
-                              color: Colors.blue,
-                              size: 32,
-                            ),
-                          ),
+            builder: (context, value, child) => Visibility(
+                  visible: _controller.isRunning || _controller.isPaused,
+                  replacement: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: ElevatedButton(
+                          onPressed: () => _controller.setDuration(const Duration(minutes: 10)),
+                          child: const Text('set duration'),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: FloatingActionButton(
+                              onPressed: () => _controller.start(whenCompleted: () {
+                                print('--------------------isCompleted');
+                              }),
+                              backgroundColor: CupertinoColors.white,
+                              tooltip: 'start',
+                              heroTag: 'start',
+                              child: const Icon(
+                                Icons.play_arrow,
+                                color: Colors.blue,
+                                size: 32,
+                              ),
+                            )),
+                      )
+                    ],
+                  ),
+                  child: Stack(
+                    children: [
+                      Align(
+                          alignment: Alignment.center,
+                          child: ExcellentCountDownTimer(
+                            controller: _controller,
+                            timerStyle: TimerStyle.hourMinuteSecondMilliSecond,
+                          )),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -93,9 +112,9 @@ class _CountDownTimerDemoState extends State<CountDownTimerDemo> {
                             ],
                           ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 )),
       ),
     );

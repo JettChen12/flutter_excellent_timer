@@ -39,11 +39,9 @@ class _NormalOperationDemoState extends State<NormalOperationDemo> {
                   Align(
                     alignment: Alignment.center,
                     child: FloatingActionButton(
-                      onPressed: () => controller.start(
-                          duration: const Duration(seconds: 10),
-                          whenCompleted: () {
-                            print('--------------------isCompleted');
-                          }),
+                      onPressed: () => controller.start(whenCompleted: () {
+                        print('--------------------isCompleted');
+                      }),
                       backgroundColor: CupertinoColors.white,
                       tooltip: 'start',
                       heroTag: 'start',
